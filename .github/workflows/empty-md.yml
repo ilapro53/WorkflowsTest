@@ -25,42 +25,39 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         
-      # Runs a set of commands using the runners shell
-      - name: Удаление пустых md-файлов
-        run: |
-          for var in $(ls)
-            do
-                txt=$(cat $var)
-                if [[ "${txt//"
-                "/"."}" == "" ]]; then
+#       # Runs a set of commands using the runners shell
+#       - name: Удаление пустых md-файлов
+#         run: |
+#           for var in $(ls)
+#             do
+#                 txt=$(cat $var)
+#                 if [[ "${txt//"
+#                 "/"."}" == "" ]]; then
 
-                if [[ "$var" == *.md ]]; then
-                    echo "Удаление:" $var
-                    rm $var
-                fi
-                fi
-            done
+#                 if [[ "$var" == *.md ]]; then
+#                     echo "Удаление:" $var
+#                     rm $var
+#                 fi
+#                 fi
+#             done
         
-#       - name: get tree
-#         run: echo $(tree)
-        
-#       - name: Remove File
-#         uses: JesseTG/rm@v1.0.3
-#         with:
-#           path: bad.file
           
+#       - name: Commit файлов
+#         run: |
+#           status=$(git status)
+#           if [[ "$status" != *"nothing to commit"* ]]; then
+#             git config --global user.email "ilapro53@gmail.com"
+#             git config --global user.name "github actions"
+#             git add .
+#             git commit -m "Удалены пустые md-файлы"
+#             git push
+#             echo "Commit выполнен"
+#           fi
+          
+#           if [[ "$status" == *"nothing to commit"* ]]; then
+#             echo "Файлы не изменены. Commit не требуется"
+#           fi
+
       - name: Commit файлов
         run: |
-          status=$(git status)
-          if [[ "$status" != *"nothing to commit"* ]]; then
-            git config --global user.email "ilapro53@gmail.com"
-            git config --global user.name "github actions"
-            git add .
-            git commit -m "Удалены пустые md-файлы"
-            git push
-            echo "Commit выполнен"
-          fi
-          
-          if [[ "$status" == *"nothing to commit"* ]]; then
-            echo "Файлы не изменены. Commit не требуется"
-          fi
+          python3
