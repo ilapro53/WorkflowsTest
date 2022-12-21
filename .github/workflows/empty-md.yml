@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Clean empty MD
 
 # Controls when the workflow will run
 on:
@@ -24,13 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Remove empty files
-        run: find . -type f -empty -print -delete
         
       # Runs a set of commands using the runners shell
-      - name: Cycle
+      - name: Удаление пустых md-файлов
         run: |
           for var in $(ls)
             do
@@ -39,27 +35,32 @@ jobs:
                 "/"."}" == "" ]]; then
 
                 if [[ "$var" == *.md ]]; then
-                    echo "Empty:" $var
+                    echo "Удаление:" $var
                     rm $var
                 fi
                 fi
             done
         
-      - name: get tree
-        run: echo $(tree)
+#       - name: get tree
+#         run: echo $(tree)
         
-      - name: Remove File
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: bad.file
+#       - name: Remove File
+#         uses: JesseTG/rm@v1.0.3
+#         with:
+#           path: bad.file
           
-      - name: Commit files and push it
+      - name: Commit файлов
         run: |
           status=$(git status)
           if [[ "$status" != *"nothing to commit"* ]]; then
             git config --global user.email "ilapro53@gmail.com"
             git config --global user.name "github actions"
             git add .
-            git commit -m "chore: clean repo"
+            git commit -m "Удалены пустые md-файлы"
             git push
+            echo "Commit выполнен"
+          fi
+          
+          if [[ "$status" == *"nothing to commit"* ]]; then
+            echo "Файлы не изменены. Commit не требуется"
           fi
