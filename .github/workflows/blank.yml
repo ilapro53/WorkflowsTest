@@ -37,6 +37,7 @@ jobs:
               txt=$(cat $var)
               if [[ "${txt//"
               "/"."}" == "" ]]; then
+              if [[ "$var" == *.md ]]; then
                   echo "Empty:" $var
                   rm $var
               fi
