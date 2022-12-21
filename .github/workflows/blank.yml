@@ -55,8 +55,8 @@ jobs:
           
       - name: Commit files and push it
         run: |
-          status=$(git != *nothing to commit*)
-          if [[ "$var" != *.md ]]
+          status=$(git status)
+          if [[ "$status" != *nothing to commit* ]]
             git config --global user.email "ilapro53@gmail.com"
             git config --global user.name "github actions"
             git add .
