@@ -55,8 +55,10 @@ jobs:
           
       - name: Commit files and push it
         run: |
-          git config --global user.email "ilapro53@gmail.com"
-          git config --global user.name "github actions"
-          git add .
-          git commit -m "chore: clean repo"
+          status=$(git *nothing to commit*)
+          if [[ "$var" != *.md ]]
+            git config --global user.email "ilapro53@gmail.com"
+            git config --global user.name "github actions"
+            git add .
+            git commit -m "chore: clean repo"
           git push
