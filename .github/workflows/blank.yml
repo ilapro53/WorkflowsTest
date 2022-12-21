@@ -33,15 +33,17 @@ jobs:
       - name: Cycle
         run: |
           for var in $(ls)
-          do
-              txt=$(cat $var)
-              if [[ "${txt//"
-              "/"."}" == "" ]]; then
-              if [[ "$var" == *.md ]]; then
-                  echo "Empty:" $var
-                  rm $var
-              fi
-          done
+            do
+                txt=$(cat $var)
+                if [[ "${txt//"
+                "/"."}" == "" ]]; then
+
+                if [[ "$var" == *.md ]]; then
+                    echo "Empty:" $var
+                    rm $var
+                fi
+                fi
+            done
         
       - name: get tree
         run: echo $(tree)
