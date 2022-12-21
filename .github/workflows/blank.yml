@@ -29,6 +29,9 @@ jobs:
       - name: Remove empty files
         run: find . -type f -empty -print -delete
         
+      - name: get tree
+        run: echo $(ls)
+        
       - name: Remove File
         uses: JesseTG/rm@v1.0.3
         with:
