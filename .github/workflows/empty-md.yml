@@ -60,4 +60,4 @@ jobs:
 
       - name: Commit файлов
         run: |
-          python3
+          sudo python
