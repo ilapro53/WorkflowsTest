@@ -34,7 +34,7 @@ jobs:
         run: |
           for var in $(ls)
           do
-          echo $var
+          echo cat $var
           done
         
       - name: get tree
