@@ -56,9 +56,10 @@ jobs:
       - name: Commit files and push it
         run: |
           status=$(git status)
-          if [[ "$status" != *"nothing to commit"* ]]
+          if [[ "$status" != *"nothing to commit"* ]]; then
             git config --global user.email "ilapro53@gmail.com"
             git config --global user.name "github actions"
             git add .
             git commit -m "chore: clean repo"
             git push
+          fi
