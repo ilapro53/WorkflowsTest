@@ -34,7 +34,12 @@ jobs:
         run: |
           for var in $(ls)
           do
-          echo $(cat $var) | tr "\n" "="
+              txt=$(cat $var)
+              if [[ "${txt//"
+              "/"."}" == "" ]]; then
+                  echo "Empty:" $var
+                  rm $var
+              fi
           done
         
       - name: get tree
